@@ -8,6 +8,7 @@ const Formulario = ({crearCita}) => {
     const [cita, actualizarCita]=useState({
         mascota:'',
         propietario:'',
+        telefono:'',
         fecha:'',
         hora:'',
         sintomas:'',
@@ -21,16 +22,17 @@ const Formulario = ({crearCita}) => {
         })
     }
     //Extraer los valores
-    const {mascota,propietario,fecha,hora,sintomas}=cita;
+    const {mascota,propietario,telefono,fecha,hora,sintomas}=cita;
     //Agregar cita
     const submitCita =(e)=>{
         e.preventDefault();
         //validando
-        if (mascota.trim()===''||propietario.trim()===''||fecha.trim()===''||
-        hora.trim()===''||sintomas.trim()==='') {
+        if (mascota.trim()===''||propietario.trim()===''|| telefono.trim()===''
+        ||fecha.trim()===''|| hora.trim()===''||sintomas.trim()==='') {
             actualizarError([true]);
             return;
         }
+  
         actualizarError(false);
         //Asignar un Id->Generar id con (uuid)
         cita.id=uuidv4();
@@ -41,6 +43,7 @@ const Formulario = ({crearCita}) => {
         actualizarCita({
             mascota:'',
             propietario:'',
+            telefono:'',
             fecha:'',
             hora:'',
             sintomas:'',
@@ -68,6 +71,13 @@ const Formulario = ({crearCita}) => {
                 className="u-full-width"
                 onChange={actualizarState}
                 value={propietario}/>
+                <label>Teléfono</label>
+                <input
+                type="text" name="telefono"
+                maxLength="9"
+                className="u-full-width"
+                onChange={actualizarState}
+                value={telefono}/>
                 <label>Fecha</label>
                 <input
                 type="date" name="fecha"
